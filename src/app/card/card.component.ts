@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Card } from '../app.component';
 
 @Component({
     selector: 'app-card',
@@ -9,24 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-    title = 'My card title';
-    text = 'My sample text';
+    @Input() card: Card;
+    @Input() index: number;
 
-    imageUrl = 'https://angular.io/assets/images/logos/angularjs/AngularJS-Shield.svg';
-
-    disabled = false;
+    cardDate: Date = new Date();
 
     constructor() { }
 
-    getInfo(): string {
-        return 'This is my info';
-    }
-
     ngOnInit(): void {
-        setTimeout(() => {
-            this.imageUrl = 'https://cdn.auth0.com/blog/logos/vuejs-logo.png';
-            this.disabled = true;
-        }, 3000);
     }
 
+    changeTitle(): void {
+        this.card.title = 'Title has been changed';
+    }
+
+    inputHandler(value): void {
+        this.card.title = value;
+    }
 }
