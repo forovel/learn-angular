@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 
@@ -9,11 +9,13 @@ import { ProductService } from '../../services/product.service';
         './product-list.component.less'
     ]
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
     title = 'Product List';
     imageWidth = 50;
     imageMargin = 2;
     showImage = false;
+
+    errorMessage: any;
 
     private plistFilter: string;
     get listFilter(): string {
@@ -45,7 +47,16 @@ export class ProductListComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.products = this.productService.getProducts();
-        this.filteredProducts = this.products;
+        this.productService.getProducts().subscribe({
+            next: products => {
+                this.products = products;
+                this.filteredProducts = this.products;
+            },
+            error: err => this.errorMessage = err
+        });
+    }
+
+    ngOnDestroy(): void {
+        // throw new Error('Method not implemented.');
     }
 }
