@@ -1,36 +1,37 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
+// Imports for loading & configuring the in-memory web api
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { ProductData } from './products/product-data';
+
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { ProductListComponent } from './pages/products/product-list/product-list.component';
-import { ConvertToSpacesPipe } from './pipes/convert-to-spaces.pipe';
-import { StarRatingComponent } from './shared/star-rating/star-rating.component';
-import { ProductDetailComponent } from './pages/products/product-details/product-detail.component';
-import { HomeComponent } from './pages/home/home.component';
-import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import { HeaderComponent } from './shared/header/header.component';
+import { ShellComponent } from './home/shell.component';
+import { MenuComponent } from './home/menu.component';
+import { WelcomeComponent } from './home/welcome.component';
+import { PageNotFoundComponent } from './home/page-not-found.component';
+
+/* Feature Modules */
+import { UserModule } from './user/user.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent,
-    ConvertToSpacesPipe,
-    StarRatingComponent,
-    ProductDetailComponent,
-    HomeComponent,
-    PageNotFoundComponent,
-    HeaderComponent
-  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(ProductData),
+    UserModule,
+    AppRoutingModule
   ],
-  providers: [],
+  declarations: [
+    AppComponent,
+    ShellComponent,
+    MenuComponent,
+    WelcomeComponent,
+    PageNotFoundComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

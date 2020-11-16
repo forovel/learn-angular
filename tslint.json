@@ -19,12 +19,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "pm",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
+      "pm",
       "kebab-case"
     ],
     "eofline": true,
@@ -93,10 +94,6 @@
         "named": "never"
       }
     },
-    "typedef": [
-      true,
-      "call-signature"
-    ],
     "typedef-whitespace": {
       "options": [
         {
