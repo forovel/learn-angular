@@ -7,7 +7,7 @@ import { LoginComponent } from './login.component';
 
 /* NgRx */
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './state/user.reducer';
+import { userReducer } from './state/user.reducers';
 
 const userRoutes: Routes = [
   { path: 'login', component: LoginComponent }
