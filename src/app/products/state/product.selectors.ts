@@ -14,7 +14,12 @@ export const getCurrentProductSelector = createSelector(
     state => state.currentProduct
 );
 
-export const gutProductsSelector = createSelector(
+export const getProductsSelector = createSelector(
     getProductFeatureState,
     state => state.products
+);
+
+export const getError = createSelector(
+    getProductFeatureState,
+    state => state.error
 );

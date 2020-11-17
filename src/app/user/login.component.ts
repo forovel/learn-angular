@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { State } from '../state/app.state';
 
+import { State } from '../state/app.state';
 import { AuthService } from './auth.service';
 import { getMaskUserNameSelector } from './state/user.selectors';
+import * as UserActions from './state/user.action';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './login.component.html',
@@ -14,14 +16,14 @@ import { getMaskUserNameSelector } from './state/user.selectors';
 export class LoginComponent implements OnInit {
   pageTitle = 'Log In';
 
-  maskUserName: boolean;
+  maskUserName$: Observable<boolean>;
 
   constructor(private authService: AuthService,
               private router: Router,
               private store: Store<State>) { }
 
   ngOnInit(): void {
-    this.store.select(getMaskUserNameSelector).subscribe(maskUserName => this.maskUserName = maskUserName);
+    this.maskUserName$ = this.store.select(getMaskUserNameSelector);
   }
 
   cancel(): void {
@@ -29,9 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkChanged(): void {
-    this.store.dispatch({
-      type: '[User] Toggle User Name Mask'
-    });
+    this.store.dispatch(UserActions.maskUserName());
   }
 
   login(loginForm: NgForm): void {
