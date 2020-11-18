@@ -7,4 +7,13 @@ export const PRODUCTS_ACTION_TYPES = {
     PRODUCTS_LOAD_PRODUCTS: '[Product] Load',
     PRODUCTS_LOAD_PRODUCTS_SUCCESS: '[Product] Load Success',
     PRODUCTS_LOAD_PRODUCTS_FAILURE: '[Product] Load Fail',
+    PRODUCTS_CREATE_PRODUCT: '[Product] Product Create',
+    PRODUCTS_CREATE_PRODUCT_SUCCESS: '[Product] Product Create Success',
+    PRODUCTS_CREATE_PRODUCT_FAILURE: '[Product] Product Create Fail',
+    PRODUCTS_UPDATE_PRODUCT: '[Product] Product Update',
+    PRODUCTS_UPDATE_PRODUCT_SUCCESS: '[Product] Product Update Success',
+    PRODUCTS_UPDATE_PRODUCT_FAILURE: '[Product] Product Update Fail',
+    PRODUCTS_DELETE_PRODUCT: '[Product] Product Delete',
+    PRODUCTS_DELETE_PRODUCT_SUCCESS: '[Product] Product Delete Success',
+    PRODUCTS_DELETE_PRODUCT_FAILURE: '[Product] Product Delete Fail',
 };

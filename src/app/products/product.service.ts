@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
 import { Product } from './product';
@@ -38,7 +38,7 @@ export class ProductService {
     const url = `${this.productsUrl}/${id}`;
     return this.http.delete<Product>(url, { headers })
       .pipe(
-        tap(data => console.log('deleteProduct: ' + id)),
+        tap(() => console.log('deleteProduct: ' + id)),
         catchError(this.handleError)
       );
   }

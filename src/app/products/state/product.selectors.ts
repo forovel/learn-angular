@@ -9,9 +9,27 @@ export const getShownProductCodeSelector = createSelector(
     state => state.showProductCode
 );
 
+export const getCurrentProductIdSelector = createSelector(
+    getProductFeatureState,
+    state => state.currentProductId
+);
+
 export const getCurrentProductSelector = createSelector(
     getProductFeatureState,
-    state => state.currentProduct
+    getCurrentProductIdSelector,
+    (state, currentProductId) => {
+        if (currentProductId === 0) {
+            return {
+                id: 0,
+                productName: '',
+                productCode: 'New',
+                description: '',
+                starRating: 0
+            };
+        } else {
+            return currentProductId ? state.products.find(product => product.id === currentProductId) : null;
+        }
+    }
 );
 
 export const getProductsSelector = createSelector(
@@ -19,7 +37,12 @@ export const getProductsSelector = createSelector(
     state => state.products
 );
 
-export const getError = createSelector(
+export const getListProductsError = createSelector(
     getProductFeatureState,
-    state => state.error
+    state => state.productListError
+);
+
+export const getSingleProductError = createSelector(
+    getProductFeatureState,
+    state => state.singleProductError
 );
